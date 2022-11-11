@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WeatherObserver
 {
-    internal class WeatherStation : IObservable
+    internal class WeatherStation
     {
-        private readonly List<IObserver> _observers = new();
+        public event EventHandler<WeatherEventArgs>? WeatherEvent;
 
         private int _temp = 60;
         public int Temperature { 
@@ -23,22 +23,9 @@ namespace WeatherObserver
                 Notify();
             } 
         }
-        public void Add(IObserver observer)
+        private void Notify()
         {
-            _observers.Add(observer);
-        }
-
-        public void Notify()
-        {
-            foreach (var observer in _observers)
-            {
-                observer.Update();
-            }
-        }
-
-        public void Remove(IObserver observer)
-        {
-            _observers.Remove(observer);
+            WeatherEvent?.Invoke(this, new WeatherEventArgs { Temperature = _temp });
         }
     }
 }

@@ -2,11 +2,12 @@
 using WeatherObserver;
 
 var weatherStation = new WeatherStation();
-var phone = new PhoneDisplay(weatherStation);
-var tv = new TvDisplay(weatherStation);
+var phone = new PhoneDisplay();
+var tv = new TvDisplay();
 
-weatherStation.Add(phone);
-weatherStation.Add(tv);
+// Add delegates to the event handler
+weatherStation.WeatherEvent += phone.OnWeatherUpdate;
+weatherStation.WeatherEvent += tv.OnWeatherUpdate;
 
 weatherStation.Temperature = 61;
 weatherStation.Temperature = 62;

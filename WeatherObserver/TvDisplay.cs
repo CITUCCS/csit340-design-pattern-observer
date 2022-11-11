@@ -6,18 +6,11 @@ using System.Threading.Tasks;
 
 namespace WeatherObserver
 {
-    internal class TvDisplay : IObserver
+    internal class TvDisplay
     {
-        private readonly WeatherStation _weatherStation;
-
-        public TvDisplay(WeatherStation weatherStation)
+        public void OnWeatherUpdate(object? sender, WeatherEventArgs eventArgs)
         {
-            _weatherStation = weatherStation;
-        }
-
-        public void Update()
-        {
-            Console.WriteLine("TV Update: Temp is " + _weatherStation.Temperature);
+            Console.WriteLine("TV Update: Temp is " + eventArgs.Temperature);
         }
     }
 }

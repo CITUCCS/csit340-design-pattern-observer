@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WeatherObserver
 {
-    internal interface IObserver
+    internal class WeatherEventArgs : EventArgs
     {
-        void Update();
+        public int Temperature;
     }
 }
